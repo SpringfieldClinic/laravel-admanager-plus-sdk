@@ -4,11 +4,9 @@ namespace SpringfieldClinic\LaravelADManagerPlusSDK\Connectors;
 
 use Saloon\Http\Connector;
 use Saloon\Traits\Plugins\AcceptsJson;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Resources\UserResource;
 use SpringfieldClinic\LaravelADManagerPlusSDK\Resources\GroupResource;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Resources\ComputerResource;
 use SpringfieldClinic\LaravelADManagerPlusSDK\Resources\OUResource;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Resources\DomainResource;
+use SpringfieldClinic\LaravelADManagerPlusSDK\Resources\UserResource;
 use SpringfieldClinic\LaravelADManagerPlusSDK\Resources\WorkflowResource;
 
 class ADManagerPlusConnector extends Connector
@@ -23,7 +21,7 @@ class ADManagerPlusConnector extends Connector
     protected function defaultQuery(): array
     {
         return array_filter([
-            'AuthToken'  => config('laravel-admanager-plus-sdk.AuthToken'),
+            'AuthToken' => config('laravel-admanager-plus-sdk.AuthToken'),
             'domainName' => config('laravel-admanager-plus-sdk.domainName'),
             'PRODUCT_NAME' => config('laravel-admanager-plus-sdk.PRODUCT_NAME'),
         ]);

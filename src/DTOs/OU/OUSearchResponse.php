@@ -10,5 +10,5 @@ class OUSearchResponse
         public readonly int $count = 0,
         public readonly array $ous = [],
     ) {}
-    
+
 }

@@ -26,7 +26,7 @@ class UpdateUserRequest extends Request
         return array_filter([
             'inputFormat' => $this->inputFormat,
             'match_ldap_name' => $this->matchLdapName,
-        ], fn($v) => $v !== null && $v !== '');
+        ], fn ($v) => $v !== null && $v !== '');
     }
 
     public function createDtoFromResponse(Response $response): mixed
@@ -43,6 +43,7 @@ class UpdateUserRequest extends Request
                     userPrincipalName: $item['USER_NAME'] ?? '',
                 );
             }
+
             return $responses;
         } else {
             return [
@@ -51,7 +52,7 @@ class UpdateUserRequest extends Request
                     statusMessage: $item['statusMessage'] ?? '',
                     sAMAccountName: $item['SAM ACCOUNT NAME'] ?? '',
                     userPrincipalName: $item['USER_NAME'] ?? '',
-                )
+                ),
             ];
         }
     }

@@ -28,7 +28,7 @@ class ResetUserPasswordRequest extends Request
             'inputFormat' => $this->inputFormat,
             'passwordType' => $this->passwordType,
             'pwd' => $this->pwd,
-        ], fn($v) => $v !== null && $v !== '');
+        ], fn ($v) => $v !== null && $v !== '');
     }
 
     public function createDtoFromResponse(Response $response): mixed
@@ -45,6 +45,7 @@ class ResetUserPasswordRequest extends Request
                     statusMessage: $item['statusMessage'] ?? ''
                 );
             }
+
             return $responses;
         } else {
             return [
@@ -53,7 +54,7 @@ class ResetUserPasswordRequest extends Request
                     sAMAccountName: $item['sAMAccountName'] ?? '',
                     objectSID: $item['objectSID'] ?? '',
                     statusMessage: $item['statusMessage'] ?? ''
-                )
+                ),
             ];
         }
     }

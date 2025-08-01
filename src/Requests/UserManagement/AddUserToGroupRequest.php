@@ -28,7 +28,7 @@ class AddUserToGroupRequest extends Request
             'inputFormat' => $this->inputFormat,
             'addGroup' => $this->addGroup,
             'primaryGroup' => $this->primaryGroup,
-        ], fn($v) => $v !== null && $v !== '');
+        ], fn ($v) => $v !== null && $v !== '');
     }
 
     public function createDtoFromResponse(Response $response): mixed
@@ -45,6 +45,7 @@ class AddUserToGroupRequest extends Request
                     userPrincipalName: $item['userPrincipalName'] ?? '',
                 );
             }
+
             return $responses;
         } else {
             return [
@@ -53,7 +54,7 @@ class AddUserToGroupRequest extends Request
                     statusMessage: $item['statusMessage'] ?? '',
                     sAMAccountName: $item['SAM ACCOUNT NAME'] ?? '',
                     userPrincipalName: $item['userPrincipalName'] ?? '',
-                )
+                ),
             ];
         }
     }

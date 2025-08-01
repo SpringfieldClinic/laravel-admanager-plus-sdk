@@ -26,7 +26,7 @@ class MoveUserRequest extends Request
         return array_filter([
             'inputFormat' => $this->inputFormat,
             'targetOU' => $this->targetOU,
-        ], fn($v) => $v !== null && $v !== '');
+        ], fn ($v) => $v !== null && $v !== '');
     }
 
     public function createDtoFromResponse(Response $response): mixed
@@ -48,6 +48,7 @@ class MoveUserRequest extends Request
                     status: $item['status'] ?? ''
                 );
             }
+
             return $responses;
         } else {
             return [
@@ -61,7 +62,7 @@ class MoveUserRequest extends Request
                     ouName: $item['ouName'] ?? '',
                     statusMessage: $item['statusMessage'] ?? '',
                     status: $item['status'] ?? ''
-                )
+                ),
             ];
         }
     }

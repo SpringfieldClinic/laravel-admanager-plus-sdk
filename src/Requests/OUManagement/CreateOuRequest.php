@@ -6,8 +6,6 @@ use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
 use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\OU\CreateOuResponse;
-use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\OU\OUResponse;
-use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\OU\OUSearchResponse;
 
 class CreateOuRequest extends Request
 {
@@ -26,7 +24,7 @@ class CreateOuRequest extends Request
     {
         return array_filter([
             'inputFormat' => $this->inputFormat,
-        ], fn($v) => $v !== null && $v !== '');
+        ], fn ($v) => $v !== null && $v !== '');
     }
 
     public function createDtoFromResponse(Response $response): mixed

@@ -28,7 +28,7 @@ class CreateUserRequest extends Request
             'inputFormat' => $this->inputFormat,
             'passwordType' => $this->passwordType,
             'pwd' => $this->pwd,
-        ], fn($v) => $v !== null && $v !== '');
+        ], fn ($v) => $v !== null && $v !== '');
     }
 
     public function createDtoFromResponse(Response $response): mixed
@@ -46,6 +46,7 @@ class CreateUserRequest extends Request
                     password: $item['USER_PASSWORD'] ?? ''
                 );
             }
+
             return $responses;
         } else {
             return [
@@ -55,7 +56,7 @@ class CreateUserRequest extends Request
                     logOnName: $item['LOG_ON_NAME'] ?? '',
                     username: $item['USER_NAME'] ?? '',
                     password: $item['USER_PASSWORD'] ?? ''
-                )
+                ),
             ];
         }
     }

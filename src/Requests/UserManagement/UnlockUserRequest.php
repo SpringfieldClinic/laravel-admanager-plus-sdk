@@ -24,7 +24,7 @@ class UnlockUserRequest extends Request
     {
         return array_filter([
             'inputFormat' => $this->inputFormat,
-        ], fn($v) => $v !== null && $v !== '');
+        ], fn ($v) => $v !== null && $v !== '');
     }
 
     public function createDtoFromResponse(Response $response): mixed
@@ -41,6 +41,7 @@ class UnlockUserRequest extends Request
                     statusMessage: $item['statusMessage'] ?? ''
                 );
             }
+
             return $responses;
         } else {
             return [
@@ -49,7 +50,7 @@ class UnlockUserRequest extends Request
                     sAMAccountName: $item['sAMAccountName'] ?? '',
                     objectSID: $item['objectSID'] ?? '',
                     statusMessage: $item['statusMessage'] ?? ''
-                )
+                ),
             ];
         }
     }

@@ -24,7 +24,7 @@ class CreateGroupRequest extends Request
     {
         return array_filter([
             'inputFormat' => $this->inputFormat,
-        ], fn($v) => $v !== null && $v !== '');
+        ], fn ($v) => $v !== null && $v !== '');
     }
 
     public function createDtoFromResponse(Response $response): mixed

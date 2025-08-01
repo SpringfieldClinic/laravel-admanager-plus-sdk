@@ -7,7 +7,6 @@ use Saloon\Http\Request;
 use Saloon\Http\Response;
 use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\Group\ListGroupMembersResponse;
 use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\Group\ListMembersResponse;
-use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\Group\MoveGroupResponse;
 
 class ListGroupMembersRequest extends Request
 {
@@ -28,7 +27,7 @@ class ListGroupMembersRequest extends Request
         return array_filter([
             'inputFormat' => $this->inputFormat,
             'refresh' => $this->refresh ? 'true' : 'false',
-        ], fn($v) => $v !== null && $v !== '');
+        ], fn ($v) => $v !== null && $v !== '');
     }
 
     public function createDtoFromResponse(Response $response): mixed

@@ -9,5 +9,5 @@ class CreateOuResponse
         public readonly string $statusMessage = '',
         public readonly string $name = '',
     ) {}
-    
+
 }

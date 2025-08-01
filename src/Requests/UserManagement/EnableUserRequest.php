@@ -28,7 +28,7 @@ class EnableUserRequest extends Request
             'inputFormat' => $this->inputFormat,
             'accountExpires' => $this->accountExpires,
             'expireTime' => $this->expireTime,
-        ], fn($v) => $v !== null && $v !== '');
+        ], fn ($v) => $v !== null && $v !== '');
     }
 
     public function createDtoFromResponse(Response $response): mixed
@@ -45,6 +45,7 @@ class EnableUserRequest extends Request
                     statusMessage: $item['statusMessage'] ?? ''
                 );
             }
+
             return $responses;
         } else {
             return [
@@ -53,7 +54,7 @@ class EnableUserRequest extends Request
                     sAMAccountName: $item['sAMAccountName'] ?? '',
                     objectSID: $item['objectSID'] ?? '',
                     statusMessage: $item['statusMessage'] ?? ''
-                )
+                ),
             ];
         }
     }

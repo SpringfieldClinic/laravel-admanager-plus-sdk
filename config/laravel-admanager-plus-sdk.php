@@ -34,5 +34,3 @@ return [
     */
     'PRODUCT_NAME' => env('ADMANAGER_PLUS_PRODUCT_NAME', 'RESTAPI'),
 ];
-
-

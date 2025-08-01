@@ -33,15 +33,15 @@ class SearchUserRequest extends Request
     {
         return array_filter([
             'searchText' => $this->searchText,
-            'range'      => $this->range,
+            'range' => $this->range,
             'startIndex' => $this->startIndex,
-            'refresh'    => $this->refresh ? 'true' : 'false',
+            'refresh' => $this->refresh ? 'true' : 'false',
             'sortColumn' => $this->sortColumn,
-            'ascending'  => $this->ascending ? 'true' : 'false',
-            'select'     => $this->select,
-            'filter'     => $this->filter,
+            'ascending' => $this->ascending ? 'true' : 'false',
+            'select' => $this->select,
+            'filter' => $this->filter,
             'domainList' => $this->domainList,
-        ], fn($v) => $v !== null && $v !== '');
+        ], fn ($v) => $v !== null && $v !== '');
     }
 
     public function createDtoFromResponse(Response $response): mixed

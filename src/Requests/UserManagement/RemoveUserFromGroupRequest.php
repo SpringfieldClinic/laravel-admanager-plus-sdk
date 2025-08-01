@@ -26,7 +26,7 @@ class RemoveUserFromGroupRequest extends Request
         return array_filter([
             'inputFormat' => $this->inputFormat,
             'removeGroup' => $this->removeGroup,
-        ], fn($v) => $v !== null && $v !== '');
+        ], fn ($v) => $v !== null && $v !== '');
     }
 
     public function createDtoFromResponse(Response $response): mixed
@@ -43,6 +43,7 @@ class RemoveUserFromGroupRequest extends Request
                     userPrincipalName: $item['userPrincipalName'] ?? '',
                 );
             }
+
             return $responses;
         } else {
             return [
@@ -51,7 +52,7 @@ class RemoveUserFromGroupRequest extends Request
                     statusMessage: $item['statusMessage'] ?? '',
                     sAMAccountName: $item['SAM ACCOUNT NAME'] ?? '',
                     userPrincipalName: $item['userPrincipalName'] ?? '',
-                )
+                ),
             ];
         }
     }

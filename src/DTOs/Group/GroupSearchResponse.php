@@ -4,7 +4,6 @@ namespace SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\Group;
 
 class GroupSearchResponse
 {
-    
     public function __construct(
         public readonly string $name = '',
         public readonly string $distinguishedName = '',

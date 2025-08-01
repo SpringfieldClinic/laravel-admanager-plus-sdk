@@ -32,7 +32,7 @@ class SearchGroupRequest extends Request
             'FROM_INDEX' => $this->startIndex,
             'refresh' => $this->refresh ? 'true' : 'false',
             'isPrimaryGroup' => $this->isPrimaryGroup,
-        ], fn($v) => $v !== null && $v !== '');
+        ], fn ($v) => $v !== null && $v !== '');
     }
 
     public function createDtoFromResponse(Response $response): mixed

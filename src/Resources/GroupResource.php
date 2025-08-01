@@ -12,15 +12,16 @@ class GroupResource extends BaseResource
 {
     /**
      * Search for groups in Active Directory.
-     * @param string $searchText The text to search for in group names.
-     * @param int $range The number of results to return.
-     * @param int $startIndex The index to start the search from.
-     * @param bool $refresh Whether to refresh the search results.
-     * @param bool $isPrimaryGroup Whether to filter by primary groups only.
-     * @return mixed 
-     * @throws FatalRequestException 
-     * @throws RequestException 
-     * @throws LogicException 
+     *
+     * @param  string  $searchText  The text to search for in group names.
+     * @param  int  $range  The number of results to return.
+     * @param  int  $startIndex  The index to start the search from.
+     * @param  bool  $refresh  Whether to refresh the search results.
+     * @param  bool  $isPrimaryGroup  Whether to filter by primary groups only.
+     *
+     * @throws FatalRequestException
+     * @throws RequestException
+     * @throws LogicException
      */
     public function search(
         string $searchText = '',
@@ -40,11 +41,12 @@ class GroupResource extends BaseResource
 
     /**
      * Create a new group in Active Directory.
-     * @param string $inputFormat A string formatted array of user identifiers, e.g. "userPrincipalName, sAMAccountName, objectGUID, objectSID".
-     * @return mixed 
-     * @throws FatalRequestException 
-     * @throws RequestException 
-     * @throws LogicException 
+     *
+     * @param  string  $inputFormat  A string formatted array of user identifiers, e.g. "userPrincipalName, sAMAccountName, objectGUID, objectSID".
+     *
+     * @throws FatalRequestException
+     * @throws RequestException
+     * @throws LogicException
      */
     public function create(
         string $inputFormat = '',
@@ -56,12 +58,13 @@ class GroupResource extends BaseResource
 
     /**
      * Move a group to a different Organizational Unit (OU) in Active Directory.
-     * @param string $inputFormat A string formatted array of group identifiers, e.g. "sAMAccountName, objectGUID, objectSID".
-     * @param string $targetOU The distinguished name of the target OU where the group should be moved.
-     * @return mixed 
-     * @throws FatalRequestException 
-     * @throws RequestException 
-     * @throws LogicException 
+     *
+     * @param  string  $inputFormat  A string formatted array of group identifiers, e.g. "sAMAccountName, objectGUID, objectSID".
+     * @param  string  $targetOU  The distinguished name of the target OU where the group should be moved.
+     *
+     * @throws FatalRequestException
+     * @throws RequestException
+     * @throws LogicException
      */
     public function move(
         string $inputFormat = '',
@@ -75,12 +78,13 @@ class GroupResource extends BaseResource
 
     /**
      * List members of a group in Active Directory.
-     * @param string $inputFormat A string formatted array of group identifiers, e.g. "sAMAccountName, objectGUID, objectSID".
-     * @param bool $refresh Whether to refresh the member list.
-     * @return mixed 
-     * @throws FatalRequestException 
-     * @throws RequestException 
-     * @throws LogicException 
+     *
+     * @param  string  $inputFormat  A string formatted array of group identifiers, e.g. "sAMAccountName, objectGUID, objectSID".
+     * @param  bool  $refresh  Whether to refresh the member list.
+     *
+     * @throws FatalRequestException
+     * @throws RequestException
+     * @throws LogicException
      */
     public function listMembers(
         string $inputFormat = '',
