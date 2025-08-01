@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use VendorName\Skeleton\Commands\SkeletonCommand;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Commands\LaravelAdmanagerPlusSdkCommand;
 
-class SkeletonServiceProvider extends PackageServiceProvider
+class LaravelAdmanagerPlusSdkServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -16,10 +16,10 @@ class SkeletonServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('skeleton')
+            ->name('laravel-admanager-plus-sdk')
             ->hasConfigFile()
             ->hasViews()
-            ->hasMigration('create_migration_table_name_table')
-            ->hasCommand(SkeletonCommand::class);
+            ->hasMigration('create_laravel_admanager_plus_sdk_table')
+            ->hasCommand(LaravelAdmanagerPlusSdkCommand::class);
     }
 }

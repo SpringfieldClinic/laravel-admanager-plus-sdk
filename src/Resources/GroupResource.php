@@ -1,0 +1,94 @@
+<?php
+
+namespace SpringfieldClinic\LaravelADManagerPlusSDK\Resources;
+
+use Saloon\Http\BaseResource;
+use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\GroupManagement\CreateGroupRequest;
+use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\GroupManagement\ListGroupMembersRequest;
+use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\GroupManagement\MoveGroupRequest;
+use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\GroupManagement\SearchGroupRequest;
+
+class GroupResource extends BaseResource
+{
+    /**
+     * Search for groups in Active Directory.
+     * @param string $searchText The text to search for in group names.
+     * @param int $range The number of results to return.
+     * @param int $startIndex The index to start the search from.
+     * @param bool $refresh Whether to refresh the search results.
+     * @param bool $isPrimaryGroup Whether to filter by primary groups only.
+     * @return mixed 
+     * @throws FatalRequestException 
+     * @throws RequestException 
+     * @throws LogicException 
+     */
+    public function search(
+        string $searchText = '',
+        int $range = 100,
+        int $startIndex = 1,
+        bool $refresh = false,
+        bool $isPrimaryGroup = false,
+    ): mixed {
+        return $this->connector->send(new SearchGroupRequest(
+            searchText: $searchText,
+            range: $range,
+            startIndex: $startIndex,
+            refresh: $refresh,
+            isPrimaryGroup: $isPrimaryGroup
+        ))->dtoOrFail();
+    }
+
+    /**
+     * Create a new group in Active Directory.
+     * @param string $inputFormat A string formatted array of user identifiers, e.g. "userPrincipalName, sAMAccountName, objectGUID, objectSID".
+     * @return mixed 
+     * @throws FatalRequestException 
+     * @throws RequestException 
+     * @throws LogicException 
+     */
+    public function create(
+        string $inputFormat = '',
+    ): mixed {
+        return $this->connector->send(new CreateGroupRequest(
+            inputFormat: $inputFormat,
+        ))->dtoOrFail();
+    }
+
+    /**
+     * Move a group to a different Organizational Unit (OU) in Active Directory.
+     * @param string $inputFormat A string formatted array of group identifiers, e.g. "sAMAccountName, objectGUID, objectSID".
+     * @param string $targetOU The distinguished name of the target OU where the group should be moved.
+     * @return mixed 
+     * @throws FatalRequestException 
+     * @throws RequestException 
+     * @throws LogicException 
+     */
+    public function move(
+        string $inputFormat = '',
+        string $targetOU = '',
+    ): mixed {
+        return $this->connector->send(new MoveGroupRequest(
+            inputFormat: $inputFormat,
+            targetOU: $targetOU,
+        ))->dtoOrFail();
+    }
+
+    /**
+     * List members of a group in Active Directory.
+     * @param string $inputFormat A string formatted array of group identifiers, e.g. "sAMAccountName, objectGUID, objectSID".
+     * @param bool $refresh Whether to refresh the member list.
+     * @return mixed 
+     * @throws FatalRequestException 
+     * @throws RequestException 
+     * @throws LogicException 
+     */
+    public function listMembers(
+        string $inputFormat = '',
+        bool $refresh = false,
+    ): mixed {
+        return $this->connector->send(new ListGroupMembersRequest(
+            inputFormat: $inputFormat,
+            refresh: $refresh,
+        ))->dtoOrFail();
+    }
+}

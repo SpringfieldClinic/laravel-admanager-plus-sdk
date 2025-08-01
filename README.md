@@ -1,74 +1,83 @@
-# :package_description
+# A Laravel package that integrates the ADManager Plus REST API as an SDK
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-<!--delete-->
----
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/springfieldclinic/laravel-admanager-plus-sdk.svg?style=flat-square)](https://packagist.org/packages/springfieldclinic/laravel-admanager-plus-sdk)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/springfieldclinic/laravel-admanager-plus-sdk/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/springfieldclinic/laravel-admanager-plus-sdk/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/springfieldclinic/laravel-admanager-plus-sdk/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/springfieldclinic/laravel-admanager-plus-sdk/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/springfieldclinic/laravel-admanager-plus-sdk.svg?style=flat-square)](https://packagist.org/packages/springfieldclinic/laravel-admanager-plus-sdk)
 
-1. Press the "Use this template" button at the top of this repo to create a new repo with the contents of this skeleton.
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files.
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-<!--/delete-->
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/:package_name.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/:package_name)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+Use this package to integrate ADManager Plus REST API into your Laravel application.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag=":package_slug-migrations"
-php artisan migrate
+composer require springfieldclinic/laravel-admanager-plus-sdk
 ```
 
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-config"
+php artisan vendor:publish --tag="laravel-admanager-plus-sdk-config"
 ```
 
 This is the contents of the published config file:
 
 ```php
 return [
+    /*
+    |--------------------------------------------------------------------------
+    | Base API URL
+    |--------------------------------------------------------------------------
+    | The full base URL to your ADManager Plus REST API (e.g.
+    | http://hostname:8080/RestAPI). Leave null to set via ENV.
+    */
+    'BASE_API_URL' => env('ADMANAGER_BASE_API_URL', null),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Active Directory Domain Name
+    |--------------------------------------------------------------------------
+    | The domain that ADManager Plus will target by default.
+    */
+    'domainName' => env('ADMANAGER_DOMAIN_NAME', null),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Authorization Token
+    |--------------------------------------------------------------------------
+    | A valid AuthToken generated in ADManager Plus (Delegation → Technician Authtokens).
+    */
+    'AuthToken' => env('ADMANAGER_AUTH_TOKEN', null),
+
+    /*|--------------------------------------------------------------------------
+    | Product Name
+    |--------------------------------------------------------------------------
+    | The product name to use in the API requests. Defaults to 'RESTAPI'.
+    | This can be useful for identifying the source of API requests in audit/logs.
+    */
+    'PRODUCT_NAME' => env('ADMANAGER_PRODUCT_NAME', 'RESTAPI'),
 ];
 ```
 
-Optionally, you can publish the views using
+Set the following in `.env`:
 
-```bash
-php artisan vendor:publish --tag=":package_slug-views"
+```
+ADMANAGER_PLUS_BASE_API_URL=http://your-admanager-plus-host
+ADMANAGER_PLUS_DOMAIN_NAME=your.domain.com
+ADMANAGER_PLUS_AUTH_TOKEN=your_auth_token
+ADMANAGER_PLUS_PRODUCT_NAME=name_of_your_application_for_audit_purposes
 ```
 
 ## Usage
 
 ```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
-```
+use LaravelADManagerPlusSDK\Http\Clients\ADManagerPlusConnector;
 
-## Testing
+$connector = new ADManagerPlusConnector();
+$users = $connector->users()->search(searchText: 'john');
 
-```bash
-composer test
+dump($users);
 ```
 
 ## Changelog
@@ -85,7 +94,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Christopher Graham](https://github.com/97906213+sc-chgraham)
 - [All Contributors](../../contributors)
 
 ## License

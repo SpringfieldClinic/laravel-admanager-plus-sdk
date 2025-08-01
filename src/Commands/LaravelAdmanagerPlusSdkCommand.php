@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class LaravelAdmanagerPlusSdkCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'laravel-admanager-plus-sdk';
 
     public $description = 'My command';
 
