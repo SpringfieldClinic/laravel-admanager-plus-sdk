@@ -3,7 +3,6 @@
 namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
 use Saloon\Http\Response;
 use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\User\UnlockUserResponse;
 use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\BaseRequest;

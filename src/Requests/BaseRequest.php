@@ -13,9 +13,6 @@ class BaseRequest extends Request
 
     /**
      * Build the input format string for the request.
-     *
-     * @param array $data
-     * @return string
      */
     public function buildInputFormatString(
         array $requiredFields = [],
@@ -28,18 +25,18 @@ class BaseRequest extends Request
         }
 
         // Ensure the data contains all requiredFields
-        if (!empty($requiredFields)) {
+        if (! empty($requiredFields)) {
             foreach ($requiredFields as $field) {
-                if (!array_key_exists($field, $data)) {
-                    throw new \InvalidArgumentException("Missing required field: {$field}. The required fields are: " . implode(', ', $requiredFields));
+                if (! array_key_exists($field, $data)) {
+                    throw new \InvalidArgumentException("Missing required field: {$field}. The required fields are: ".implode(', ', $requiredFields));
                 }
             }
         }
 
         // Ensure the data contains at least one of the requiresOneOf fields
-        if (!empty($requiresOneOfFields)) {
+        if (! empty($requiresOneOfFields)) {
             if (empty(array_intersect(array_keys($data), $requiresOneOfFields))) {
-                throw new \InvalidArgumentException("At least one of the following fields is required: " . implode(', ', $requiresOneOfFields));
+                throw new \InvalidArgumentException('At least one of the following fields is required: '.implode(', ', $requiresOneOfFields));
             }
         }
 
@@ -95,7 +92,7 @@ class BaseRequest extends Request
                 'lastLogoffDateTime',
                 'lastPasswordChangeDateTime',
                 'lastLogonTimestampDateTime',
-                
+
                 'groupType',
                 'groupScope',
                 'OUName',
@@ -106,7 +103,7 @@ class BaseRequest extends Request
                     $formattedValue = trim($value);
                 } elseif (is_int($value) || is_float($value)) {
                     // Ensure numeric values are formatted correctly
-                    $formattedValue = (string)$value;
+                    $formattedValue = (string) $value;
                 }
             } else {
                 // Throw an exception if the key is not a valid Active Directory attribute
@@ -115,7 +112,6 @@ class BaseRequest extends Request
 
             $formattedData[$key] = $formattedValue;
         }
-
 
         return json_encode(
             array_map('urlencode', $formattedData)

@@ -60,7 +60,7 @@ class UserResource extends BaseResource
      * Create a new user in Active Directory.
      *
      * @param  array  $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName', 'sAMAccountName', 'givenName', 'sn', 'displayName', 'mail', etc. The required fields depend on your Active Directory schema.
-     * 
+     *
      *  Example user data structure:
      * [
      *   'givenName' => '', // The user's first name
@@ -157,7 +157,7 @@ class UserResource extends BaseResource
     /**
      * Move a user to a different Organizational Unit (OU).
      *
-     * @param  array   $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName'.
+     * @param  array  $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName'.
      * @param  string  $targetOU  The name of the OU to which the users are being moved.
      *
      * @throws FatalRequestException
@@ -177,7 +177,7 @@ class UserResource extends BaseResource
     /**
      * Add a user to a group.
      *
-     * @param  array   $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName'.
+     * @param  array  $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName'.
      * @param  string  $addGroup  A comma-separated list of group sAMAccountName names to add the user to.
      * @param  string  $primaryGroup  The primary group sAMAccountName for the user, defaults to empty (no primary group).
      *
@@ -200,7 +200,7 @@ class UserResource extends BaseResource
     /**
      * Remove a user from a group.
      *
-     * @param  array   $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName'.
+     * @param  array  $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName'.
      * @param  string  $removeGroup  A comma-separated list of group sAMAccountName names to remove the user from.
      *
      * @throws FatalRequestException
@@ -220,7 +220,7 @@ class UserResource extends BaseResource
     /**
      * Update user attributes.
      *
-     * @param  array   $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName'.
+     * @param  array  $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName'.
      * @param  string  $matchLdapName  The LDAP attribute to match the user by, defaults to empty (no specific match). The following are the attributes that can be specified along with this parameter: sAMAccountName, employeeID, userPrincipalName, distinguishedName, cn, name, givenName, sn, displayName, profilePath, scriptPath, employeeNumber, mail, objectSID, and objectGUID.
      *
      * @throws FatalRequestException
@@ -240,7 +240,7 @@ class UserResource extends BaseResource
     /**
      * Reset a user's password.
      *
-     * @param  array   $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName'.
+     * @param  array  $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName'.
      * @param  string  $passwordType  The type of password to set, defaults to 'password'. Other options include 'random', 'temporary', and 'custom'.
      * @param  string  $pwd  The new password to set for the user, required if `passwordType` is set to 'custom'.
      * @param  bool  $mustChangePassword  Whether the user must change their password at next login, defaults to false.

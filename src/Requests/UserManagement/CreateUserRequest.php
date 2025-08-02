@@ -31,11 +31,11 @@ class CreateUserRequest extends BaseRequest
                     'password',
                     'title',
                     'department',
-                    'company'
+                    'company',
                 ],
                 data: $this->users
             ),
-        ], fn($v) => $v !== null && $v !== '');
+        ], fn ($v) => $v !== null && $v !== '');
     }
 
     public function createDtoFromResponse(Response $response): mixed
