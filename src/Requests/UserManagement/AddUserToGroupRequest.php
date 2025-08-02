@@ -3,16 +3,16 @@
 namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
 use Saloon\Http\Response;
 use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\User\AddUserToGroupResponse;
+use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\BaseRequest;
 
-class AddUserToGroupRequest extends Request
+class AddUserToGroupRequest extends BaseRequest
 {
     protected Method $method = Method::POST;
 
     public function __construct(
-        protected string $inputFormat = '',
+        protected array $users = [],
         protected string $addGroup = '',
         protected ?string $primaryGroup = '',
     ) {}
@@ -25,7 +25,18 @@ class AddUserToGroupRequest extends Request
     public function defaultQuery(): array
     {
         return array_filter([
-            'inputFormat' => $this->inputFormat,
+            'inputFormat' => $this->buildInputFormatString(
+                requiresOneOfFields: [
+                    'sAMAccountName',
+                    'userPrincipalName',
+                    'distinguishedName',
+                    'mail',
+                    'employeeID',
+                    'objectGUID',
+                    'objectSID',
+                ],
+                data: $this->users
+            ),
             'addGroup' => $this->addGroup,
             'primaryGroup' => $this->primaryGroup,
         ], fn ($v) => $v !== null && $v !== '');

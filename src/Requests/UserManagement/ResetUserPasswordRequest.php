@@ -3,16 +3,16 @@
 namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
 use Saloon\Http\Response;
 use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\User\ResetUserPasswordResponse;
+use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\BaseRequest;
 
-class ResetUserPasswordRequest extends Request
+class ResetUserPasswordRequest extends BaseRequest
 {
     protected Method $method = Method::POST;
 
     public function __construct(
-        protected string $inputFormat = '',
+        protected array $users = [],
         protected string $passwordType = 'password',
         protected string $pwd = '',
     ) {}
@@ -25,7 +25,18 @@ class ResetUserPasswordRequest extends Request
     public function defaultQuery(): array
     {
         return array_filter([
-            'inputFormat' => $this->inputFormat,
+            'inputFormat' => $this->buildInputFormatString(
+                requiresOneOfFields: [
+                    'sAMAccountName',
+                    'userPrincipalName',
+                    'distinguishedName',
+                    'mail',
+                    'employeeID',
+                    'objectGUID',
+                    'objectSID',
+                ],
+                data: $this->users
+            ),
             'passwordType' => $this->passwordType,
             'pwd' => $this->pwd,
         ], fn ($v) => $v !== null && $v !== '');

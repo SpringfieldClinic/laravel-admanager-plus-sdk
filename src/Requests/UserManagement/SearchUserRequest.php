@@ -3,12 +3,12 @@
 namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
 use Saloon\Http\Response;
 use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\User\UserResponse;
 use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\User\UserSearchResponse;
+use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\BaseRequest;
 
-class SearchUserRequest extends Request
+class SearchUserRequest extends BaseRequest
 {
     protected Method $method = Method::GET;
 

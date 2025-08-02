@@ -3,16 +3,16 @@
 namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
 use Saloon\Http\Response;
 use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\User\RemoveUserFromGroupResponse;
+use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\BaseRequest;
 
-class RemoveUserFromGroupRequest extends Request
+class RemoveUserFromGroupRequest extends BaseRequest
 {
     protected Method $method = Method::POST;
 
     public function __construct(
-        protected string $inputFormat = '',
+        protected array $users = [],
         protected string $removeGroup = '',
     ) {}
 
@@ -24,7 +24,18 @@ class RemoveUserFromGroupRequest extends Request
     public function defaultQuery(): array
     {
         return array_filter([
-            'inputFormat' => $this->inputFormat,
+            'inputFormat' => $this->buildInputFormatString(
+                requiresOneOfFields: [
+                    'sAMAccountName',
+                    'userPrincipalName',
+                    'distinguishedName',
+                    'mail',
+                    'employeeID',
+                    'objectGUID',
+                    'objectSID',
+                ],
+                data: $this->users
+            ),
             'removeGroup' => $this->removeGroup,
         ], fn ($v) => $v !== null && $v !== '');
     }

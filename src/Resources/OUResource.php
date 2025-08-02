@@ -48,16 +48,16 @@ class OUResource extends BaseResource
     /**
      * Create a new Organizational Unit (OU) in Active Directory.
      *
-     * @param  string  $inputFormat  A string formatted array of OU identifiers. e.g. [{"name":"testBOU5", "OUName":"OU=test,DC=mse1,DC=com"}] will create the OU "testBOU5" with the distinguished name "OU=test,DC=mse1,DC=com". The OUName is the distinguished name of the parent OU that the new OU will be created under.
+     * @param  array  $ous  A string formatted array of OU identifiers, e.g. "name, OUName".
      *
      * @throws FatalRequestException
      * @throws RequestException
      */
     public function create(
-        string $inputFormat = '',
+        array $ous = [],
     ): mixed {
         return $this->connector->send(new CreateOuRequest(
-            inputFormat: $inputFormat,
+            ous: $ous,
         ))->dtoOrFail();
     }
 }

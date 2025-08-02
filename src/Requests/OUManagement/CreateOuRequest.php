@@ -3,16 +3,16 @@
 namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\OUManagement;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
 use Saloon\Http\Response;
 use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\OU\CreateOuResponse;
+use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\BaseRequest;
 
-class CreateOuRequest extends Request
+class CreateOuRequest extends BaseRequest
 {
     protected Method $method = Method::POST;
 
     public function __construct(
-        protected string $inputFormat = '',
+        protected array $ous = [],
     ) {}
 
     public function resolveEndpoint(): string
@@ -23,7 +23,13 @@ class CreateOuRequest extends Request
     public function defaultQuery(): array
     {
         return array_filter([
-            'inputFormat' => $this->inputFormat,
+            'inputFormat' => $this->buildInputFormatString(
+                requiredFields: [
+                    'name', // e.g., 'My New OU'
+                    'OUName', // FQDN of the parent OU where the OU will be created
+                ],
+                data: $this->ous
+            ),
         ], fn ($v) => $v !== null && $v !== '');
     }
 

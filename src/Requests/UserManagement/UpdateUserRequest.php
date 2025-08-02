@@ -3,16 +3,16 @@
 namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
 use Saloon\Http\Response;
 use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\User\UpdateUserResponse;
+use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\BaseRequest;
 
-class UpdateUserRequest extends Request
+class UpdateUserRequest extends BaseRequest
 {
     protected Method $method = Method::POST;
 
     public function __construct(
-        protected string $inputFormat = '',
+        protected array $users = [],
         protected string $matchLdapName = '',
     ) {}
 
@@ -24,7 +24,26 @@ class UpdateUserRequest extends Request
     public function defaultQuery(): array
     {
         return array_filter([
-            'inputFormat' => $this->inputFormat,
+            'inputFormat' => $this->buildInputFormatString(
+                requiresOneOfFields: [
+                    'sAMAccountName',
+                    'userPrincipalName',
+                    'distinguishedName',
+                    'mail',
+                    'employeeID',
+                    'objectGUID',
+                    'objectSID',
+                    'cn',
+                    'name',
+                    'givenName',
+                    'sn',
+                    'displayName',
+                    'profilePath',
+                    'scriptPath',
+                    'employeeNumber',
+                ],
+                data: $this->users
+            ),
             'match_ldap_name' => $this->matchLdapName,
         ], fn ($v) => $v !== null && $v !== '');
     }

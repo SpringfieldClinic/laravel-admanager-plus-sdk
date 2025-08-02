@@ -3,16 +3,16 @@
 namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
 use Saloon\Http\Response;
 use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\User\MoveUserResponse;
+use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\BaseRequest;
 
-class MoveUserRequest extends Request
+class MoveUserRequest extends BaseRequest
 {
     protected Method $method = Method::POST;
 
     public function __construct(
-        protected string $inputFormat = '',
+        protected array $users = [],
         protected string $targetOU = '',
     ) {}
 
@@ -24,7 +24,18 @@ class MoveUserRequest extends Request
     public function defaultQuery(): array
     {
         return array_filter([
-            'inputFormat' => $this->inputFormat,
+            'inputFormat' => $this->buildInputFormatString(
+                requiresOneOfFields: [
+                    'sAMAccountName',
+                    'userPrincipalName',
+                    'distinguishedName',
+                    'mail',
+                    'employeeID',
+                    'objectGUID',
+                    'objectSID',
+                ],
+                data: $this->users
+            ),
             'targetOU' => $this->targetOU,
         ], fn ($v) => $v !== null && $v !== '');
     }

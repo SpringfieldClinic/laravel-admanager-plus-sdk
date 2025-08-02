@@ -3,17 +3,17 @@
 namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\GroupManagement;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
 use Saloon\Http\Response;
 use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\Group\ListGroupMembersResponse;
 use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\Group\ListMembersResponse;
+use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\BaseRequest;
 
-class ListGroupMembersRequest extends Request
+class ListGroupMembersRequest extends BaseRequest
 {
     protected Method $method = Method::POST;
 
     public function __construct(
-        protected string $inputFormat = '',
+        protected array $groups = [],
         protected bool $refresh = false,
     ) {}
 
@@ -25,7 +25,14 @@ class ListGroupMembersRequest extends Request
     public function defaultQuery(): array
     {
         return array_filter([
-            'inputFormat' => $this->inputFormat,
+            'inputFormat' => $this->buildInputFormatString(
+                requiresOneOfFields: [
+                    'sAMAccountName', // e.g., 'My Group'
+                    'objectGUID', // e.g., '12345678-1234-1234-1234-123456789012'
+                    'objectSID', // e.g., 'S-1-5-21-1234567890-1234567890-1234567890-1234'
+                ],
+                data: $this->groups
+            ),
             'refresh' => $this->refresh ? 'true' : 'false',
         ], fn ($v) => $v !== null && $v !== '');
     }

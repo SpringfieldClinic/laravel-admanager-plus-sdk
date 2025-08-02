@@ -3,16 +3,16 @@
 namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
 use Saloon\Http\Response;
 use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\User\DisableUserResponse;
+use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\BaseRequest;
 
-class DisableUserRequest extends Request
+class DisableUserRequest extends BaseRequest
 {
     protected Method $method = Method::POST;
 
     public function __construct(
-        protected ?string $inputFormat = '',
+        protected array $users = [],
     ) {}
 
     public function resolveEndpoint(): string
@@ -23,7 +23,18 @@ class DisableUserRequest extends Request
     public function defaultQuery(): array
     {
         return array_filter([
-            'inputFormat' => $this->inputFormat,
+            'inputFormat' => $this->buildInputFormatString(
+                requiresOneOfFields: [
+                    'sAMAccountName',
+                    'userPrincipalName',
+                    'distinguishedName',
+                    'mail',
+                    'employeeID',
+                    'objectGUID',
+                    'objectSID',
+                ],
+                data: $this->users
+            ),
         ], fn ($v) => $v !== null && $v !== '');
     }
 

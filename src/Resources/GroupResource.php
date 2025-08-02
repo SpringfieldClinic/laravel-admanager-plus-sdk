@@ -42,24 +42,24 @@ class GroupResource extends BaseResource
     /**
      * Create a new group in Active Directory.
      *
-     * @param  string  $inputFormat  A string formatted array of user identifiers, e.g. "userPrincipalName, sAMAccountName, objectGUID, objectSID".
+     * @param  array  $groups  A string formatted array of group identifiers, e.g. "sAMAccountName, objectGUID, objectSID".
      *
      * @throws FatalRequestException
      * @throws RequestException
      * @throws LogicException
      */
     public function create(
-        string $inputFormat = '',
+        array $groups = [],
     ): mixed {
         return $this->connector->send(new CreateGroupRequest(
-            inputFormat: $inputFormat,
+            groups: $groups,
         ))->dtoOrFail();
     }
 
     /**
      * Move a group to a different Organizational Unit (OU) in Active Directory.
      *
-     * @param  string  $inputFormat  A string formatted array of group identifiers, e.g. "sAMAccountName, objectGUID, objectSID".
+     * @param  array  $groups  A string formatted array of group identifiers, e.g. "sAMAccountName, objectGUID, objectSID".
      * @param  string  $targetOU  The distinguished name of the target OU where the group should be moved.
      *
      * @throws FatalRequestException
@@ -67,11 +67,11 @@ class GroupResource extends BaseResource
      * @throws LogicException
      */
     public function move(
-        string $inputFormat = '',
+        array $groups = [],
         string $targetOU = '',
     ): mixed {
         return $this->connector->send(new MoveGroupRequest(
-            inputFormat: $inputFormat,
+            groups: $groups,
             targetOU: $targetOU,
         ))->dtoOrFail();
     }
@@ -79,7 +79,7 @@ class GroupResource extends BaseResource
     /**
      * List members of a group in Active Directory.
      *
-     * @param  string  $inputFormat  A string formatted array of group identifiers, e.g. "sAMAccountName, objectGUID, objectSID".
+     * @param  array  $groups  A string formatted array of group identifiers, e.g. "sAMAccountName, objectGUID, objectSID".
      * @param  bool  $refresh  Whether to refresh the member list.
      *
      * @throws FatalRequestException
@@ -87,11 +87,11 @@ class GroupResource extends BaseResource
      * @throws LogicException
      */
     public function listMembers(
-        string $inputFormat = '',
+        array $groups = [],
         bool $refresh = false,
     ): mixed {
         return $this->connector->send(new ListGroupMembersRequest(
-            inputFormat: $inputFormat,
+            groups: $groups,
             refresh: $refresh,
         ))->dtoOrFail();
     }

@@ -3,16 +3,16 @@
 namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
 use Saloon\Http\Response;
 use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\User\EnableUserResponse;
+use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\BaseRequest;
 
-class EnableUserRequest extends Request
+class EnableUserRequest extends BaseRequest
 {
     protected Method $method = Method::POST;
 
     public function __construct(
-        protected ?string $inputFormat = '',
+        protected array $users = [],
         protected string $accountExpires = 'Never',
         protected string $expireTime = ''
     ) {}
@@ -25,7 +25,18 @@ class EnableUserRequest extends Request
     public function defaultQuery(): array
     {
         return array_filter([
-            'inputFormat' => $this->inputFormat,
+            'inputFormat' => $this->buildInputFormatString(
+                requiresOneOfFields: [
+                    'sAMAccountName',
+                    'userPrincipalName',
+                    'distinguishedName',
+                    'mail',
+                    'employeeID',
+                    'objectGUID',
+                    'objectSID',
+                ],
+                data: $this->users
+            ),
             'accountExpires' => $this->accountExpires,
             'expireTime' => $this->expireTime,
         ], fn ($v) => $v !== null && $v !== '');

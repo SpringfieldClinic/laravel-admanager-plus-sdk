@@ -3,32 +3,39 @@
 namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement;
 
 use Saloon\Enums\Method;
-use Saloon\Http\Request;
 use Saloon\Http\Response;
 use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\User\CreateUserResponse;
+use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\BaseRequest;
 
-class CreateUserRequest extends Request
+class CreateUserRequest extends BaseRequest
 {
     protected Method $method = Method::POST;
 
     public function __construct(
-        protected string $inputFormat = '',
-        protected string $passwordType = 'password',
-        protected string $pwd = '',
+        protected array $users = [],
     ) {}
 
     public function resolveEndpoint(): string
     {
-        return '/ResetPwd';
+        return '/CreateUser';
     }
 
     public function defaultQuery(): array
     {
         return array_filter([
-            'inputFormat' => $this->inputFormat,
-            'passwordType' => $this->passwordType,
-            'pwd' => $this->pwd,
-        ], fn ($v) => $v !== null && $v !== '');
+            'inputFormat' => $this->buildInputFormatString(
+                requiredFields: [
+                    'givenName',
+                    'sn',
+                    'sAMAccountName',
+                    'password',
+                    'title',
+                    'department',
+                    'company'
+                ],
+                data: $this->users
+            ),
+        ], fn($v) => $v !== null && $v !== '');
     }
 
     public function createDtoFromResponse(Response $response): mixed

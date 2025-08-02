@@ -59,24 +59,65 @@ class UserResource extends BaseResource
     /**
      * Create a new user in Active Directory.
      *
-     * @param  string  $inputFormat  A string formatted array of user identifiers, e.g. "userPrincipalName, sAMAccountName, objectGUID, objectSID".
+     * @param  array  $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName', 'sAMAccountName', 'givenName', 'sn', 'displayName', 'mail', etc. The required fields depend on your Active Directory schema.
+     * 
+     *  Example user data structure:
+     * [
+     *   'givenName' => '', // The user's first name
+     *   'initials' => '', // The user's middle name/initials
+     *   'sn' => '', // The user's last name/surname
+     *   'userPrincipalName' => '', // The user's logon name
+     *   'sAMAccountName' => '', // The user's logon name (legacy pre Windows 2000)
+     *   'displayName' => '', // The user's display name
+     *   'description' => '', // A description for the user
+     *   'physicalDeliveryOfficeName' => '', // The user's office location
+     *   'telephoneNumber' => '', // The user's telephone number
+     *   'mobile' => '', // The user's mobile number
+     *   'mail' => '', // The user's email address
+     *   'password' => '', // The user's password
+     *   'street' => '', // The user's street address
+     *   'city' => '', // The user's city
+     *   'state' => '', // The user's state
+     *   'postalCode' => '', // The user's postal code
+     *   'country' => '', // The user's country
+     *   'title' => '', // The user's job title
+     *   'department' => '', // The user's department
+     *   'company' => '', // The user's company
+     *   'manager' => '', // The user's manager (can be a distinguished name or sAMAccountName)
+     *   'employeeID' => '', // The user's employee ID
+     *   'extensionAttribute1' => '', // Custom extension attributes (1-15)
+     *   'extensionAttribute2' => '', // Custom extension attributes (1-15)
+     *   'extensionAttribute3' => '', // Custom extension attributes (1-15)
+     *   'extensionAttribute4' => '', // Custom extension attributes (1-15)
+     *   'extensionAttribute5' => '', // Custom extension attributes (1-15)
+     *   'extensionAttribute6' => '', // Custom extension attributes (1-15)
+     *   'extensionAttribute7' => '', // Custom extension attributes (1-15)
+     *   'extensionAttribute8' => '', // Custom extension attributes (1-15)
+     *   'extensionAttribute9' => '', // Custom extension attributes (1-15)
+     *   'extensionAttribute10' => '', // Custom extension attributes (1-15)
+     *   'extensionAttribute11' => '', // Custom extension attributes (1-15)
+     *   'extensionAttribute12' => '', // Custom extension attributes (1-15)
+     *   'extensionAttribute13' => '', // Custom extension attributes (1-15)
+     *   'extensionAttribute14' => '', // Custom extension attributes (1-15)
+     *   'extensionAttribute15' => '', // Custom extension attributes (1-15)
+     * ]
      *
      * @throws FatalRequestException
      * @throws RequestException
      * @throws LogicException
      */
     public function create(
-        string $inputFormat = '',
+        array $users = [],
     ): mixed {
         return $this->connector->send(new CreateUserRequest(
-            inputFormat: $inputFormat,
+            users: $users,
         ))->dtoOrFail();
     }
 
     /**
      * Enable a user account.
      *
-     * @param  string  $inputFormat  A string formatted array of user identifiers, e.g. "userPrincipalName, sAMAccountName, objectGUID, objectSID".
+     * @param  array  $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName'.
      * @param  string  $accountExpires  A string indicating when the account expires, defaults to 'Never'. Set to 'EndOf' if you want the set the account expirty time.
      * @param  string  $expireTime  A string indicating the exact time when the account expires, required if `accountExpires` is set to 'EndOf'. The format should be 'MM-dd-yyyy', e.g. '12-31-2023'. If `accountExpires` is set to 'Never', this parameter is ignored.
      *
@@ -85,12 +126,12 @@ class UserResource extends BaseResource
      * @throws LogicException
      */
     public function enable(
-        string $inputFormat = '',
+        array $users = [],
         string $accountExpires = 'Never',
         string $expireTime = ''
     ): mixed {
         return $this->connector->send(new EnableUserRequest(
-            inputFormat: $inputFormat,
+            users: $users,
             accountExpires: $accountExpires,
             expireTime: $expireTime
         ))->dtoOrFail();
@@ -99,24 +140,24 @@ class UserResource extends BaseResource
     /**
      * Disable a user account.
      *
-     * @param  string  $inputFormat  A string formatted array of user identifiers, e.g. "userPrincipalName, sAMAccountName, objectGUID, objectSID".
+     * @param  array  $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName'.
      *
      * @throws FatalRequestException
      * @throws RequestException
      * @throws LogicException
      */
     public function disable(
-        string $inputFormat = '',
+        array $users = [],
     ): mixed {
         return $this->connector->send(new DisableUserRequest(
-            inputFormat: $inputFormat,
+            users: $users,
         ))->dtoOrFail();
     }
 
     /**
      * Move a user to a different Organizational Unit (OU).
      *
-     * @param  string  $inputFormat  A string formatted array of user identifiers, e.g. "userPrincipalName, sAMAccountName, objectGUID, objectSID".
+     * @param  array   $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName'.
      * @param  string  $targetOU  The name of the OU to which the users are being moved.
      *
      * @throws FatalRequestException
@@ -124,11 +165,11 @@ class UserResource extends BaseResource
      * @throws LogicException
      */
     public function move(
-        string $inputFormat = '',
+        array $users = [],
         string $targetOU = ''
     ): mixed {
         return $this->connector->send(new MoveUserRequest(
-            inputFormat: $inputFormat,
+            users: $users,
             targetOU: $targetOU
         ))->dtoOrFail();
     }
@@ -136,7 +177,7 @@ class UserResource extends BaseResource
     /**
      * Add a user to a group.
      *
-     * @param  string  $inputFormat  A string formatted array of user identifiers, e.g. "userPrincipalName, sAMAccountName, objectGUID, objectSID".
+     * @param  array   $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName'.
      * @param  string  $addGroup  A comma-separated list of group sAMAccountName names to add the user to.
      * @param  string  $primaryGroup  The primary group sAMAccountName for the user, defaults to empty (no primary group).
      *
@@ -145,12 +186,12 @@ class UserResource extends BaseResource
      * @throws LogicException
      */
     public function addGroup(
-        string $inputFormat = '',
+        array $users = [],
         string $addGroup = '',
         string $primaryGroup = ''
     ): AddUserToGroupRequest {
         return $this->connector->send(new AddUserToGroupRequest(
-            inputFormat: $inputFormat,
+            users: $users,
             addGroup: $addGroup,
             primaryGroup: $primaryGroup
         ))->dtoOrFail();
@@ -159,7 +200,7 @@ class UserResource extends BaseResource
     /**
      * Remove a user from a group.
      *
-     * @param  string  $inputFormat  A string formatted array of user identifiers, e.g. "userPrincipalName, sAMAccountName, objectGUID, objectSID".
+     * @param  array   $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName'.
      * @param  string  $removeGroup  A comma-separated list of group sAMAccountName names to remove the user from.
      *
      * @throws FatalRequestException
@@ -167,11 +208,11 @@ class UserResource extends BaseResource
      * @throws LogicException
      */
     public function removeGroup(
-        string $inputFormat = '',
+        array $users = [],
         string $removeGroup = ''
     ): mixed {
         return $this->connector->send(new RemoveUserFromGroupRequest(
-            inputFormat: $inputFormat,
+            users: $users,
             removeGroup: $removeGroup
         ))->dtoOrFail();
     }
@@ -179,7 +220,7 @@ class UserResource extends BaseResource
     /**
      * Update user attributes.
      *
-     * @param  string  $inputFormat  A string formatted array of user identifiers, e.g. "userPrincipalName, sAMAccountName, objectGUID, objectSID".
+     * @param  array   $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName'.
      * @param  string  $matchLdapName  The LDAP attribute to match the user by, defaults to empty (no specific match). The following are the attributes that can be specified along with this parameter: sAMAccountName, employeeID, userPrincipalName, distinguishedName, cn, name, givenName, sn, displayName, profilePath, scriptPath, employeeNumber, mail, objectSID, and objectGUID.
      *
      * @throws FatalRequestException
@@ -187,11 +228,11 @@ class UserResource extends BaseResource
      * @throws LogicException
      */
     public function update(
-        string $inputFormat = '',
+        array $users = [],
         string $matchLdapName = '',
     ): mixed {
         return $this->connector->send(new UpdateUserRequest(
-            inputFormat: $inputFormat,
+            users: $users,
             matchLdapName: $matchLdapName
         ))->dtoOrFail();
     }
@@ -199,7 +240,7 @@ class UserResource extends BaseResource
     /**
      * Reset a user's password.
      *
-     * @param  string  $inputFormat  A string formatted array of user identifiers, e.g. "userPrincipalName, sAMAccountName, objectGUID, objectSID".
+     * @param  array   $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName'.
      * @param  string  $passwordType  The type of password to set, defaults to 'password'. Other options include 'random', 'temporary', and 'custom'.
      * @param  string  $pwd  The new password to set for the user, required if `passwordType` is set to 'custom'.
      * @param  bool  $mustChangePassword  Whether the user must change their password at next login, defaults to false.
@@ -209,12 +250,12 @@ class UserResource extends BaseResource
      * @throws LogicException
      */
     public function resetPassword(
-        string $inputFormat = '',
+        array $users = [],
         string $passwordType = 'password',
         string $pwd = '',
     ): mixed {
         return $this->connector->send(new ResetUserPasswordRequest(
-            inputFormat: $inputFormat,
+            users: $users,
             passwordType: $passwordType,
             pwd: $pwd,
         ))->dtoOrFail();
@@ -223,17 +264,17 @@ class UserResource extends BaseResource
     /**
      * Unlock a user account.
      *
-     * @param  string  $inputFormat  A string formatted array of user identifiers, e.g. "userPrincipalName, sAMAccountName, objectGUID, objectSID".
+     * @param  array  $users  An array of user data to create. Each user should be an associative array with keys like 'userPrincipalName'.
      *
      * @throws FatalRequestException
      * @throws RequestException
      * @throws LogicException
      */
     public function unlock(
-        string $inputFormat = '',
+        array $users = [],
     ): mixed {
         return $this->connector->send(new UnlockUserRequest(
-            inputFormat: $inputFormat,
+            users: $users,
         ))->dtoOrFail();
     }
 }
