@@ -2,6 +2,7 @@
 
 namespace SpringfieldClinic\LaravelAdmanagerPlusSdk;
 
+use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use SpringfieldClinic\LaravelAdmanagerPlusSdk\Commands\LaravelAdmanagerPlusSdkCommand;
@@ -18,8 +19,10 @@ class LaravelAdmanagerPlusSdkServiceProvider extends PackageServiceProvider
         $package
             ->name('laravel-admanager-plus-sdk')
             ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel_admanager_plus_sdk_table')
-            ->hasCommand(LaravelAdmanagerPlusSdkCommand::class);
+            ->hasCommand(LaravelAdmanagerPlusSdkCommand::class)
+            ->hasInstallCommand(function(InstallCommand $command) {
+                $command
+                    ->publishConfigFile();
+            });
     }
 }
