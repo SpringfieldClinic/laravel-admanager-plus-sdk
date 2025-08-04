@@ -18,6 +18,13 @@ class ADManagerPlusConnector extends Connector
         return config('admanager-plus-sdk.BASE_API_URL') ?? '';
     }
 
+    public function defaultConfig(): array
+    {
+        return [
+            'verify' => false,
+        ];
+    }
+
     protected function defaultQuery(): array
     {
         return array_filter([
