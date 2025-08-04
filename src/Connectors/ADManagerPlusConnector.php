@@ -1,13 +1,13 @@
 <?php
 
-namespace SpringfieldClinic\LaravelADManagerPlusSDK\Connectors;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\Connectors;
 
 use Saloon\Http\Connector;
 use Saloon\Traits\Plugins\AcceptsJson;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Resources\GroupResource;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Resources\OUResource;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Resources\UserResource;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Resources\WorkflowResource;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Resources\GroupResource;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Resources\OUResource;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Resources\UserResource;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Resources\WorkflowResource;
 
 class ADManagerPlusConnector extends Connector
 {

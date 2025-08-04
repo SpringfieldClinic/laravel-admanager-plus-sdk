@@ -1,11 +1,11 @@
 <?php
 
-namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\UserManagement;
 
 use Saloon\Enums\Method;
 use Saloon\Http\Response;
-use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\User\EnableUserResponse;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\BaseRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\DTOs\User\EnableUserResponse;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\BaseRequest;
 
 class EnableUserRequest extends BaseRequest
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\UserManagement;
 
 use Saloon\Enums\Method;
 use Saloon\Http\Response;
-use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\User\UserResponse;
-use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\User\UserSearchResponse;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\BaseRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\DTOs\User\UserResponse;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\DTOs\User\UserSearchResponse;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\BaseRequest;
 
 class SearchUserRequest extends BaseRequest
 {

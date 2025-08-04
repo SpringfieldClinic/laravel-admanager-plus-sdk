@@ -72,7 +72,7 @@ ADMANAGER_PLUS_PRODUCT_NAME=name_of_your_application_for_audit_purposes
 ## Usage
 
 ```php
-use LaravelADManagerPlusSDK\Http\Clients\ADManagerPlusConnector;
+use LaravelAdmanagerPlusSdk\Http\Clients\ADManagerPlusConnector;
 
 $connector = new ADManagerPlusConnector();
 $users = $connector->users()->search(searchText: 'john');

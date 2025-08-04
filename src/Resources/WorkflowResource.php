@@ -1,10 +1,10 @@
 <?php
 
-namespace SpringfieldClinic\LaravelADManagerPlusSDK\Resources;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\Resources;
 
 use Saloon\Http\BaseResource;
-use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\Workflow\WorkflowResponse;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\WorkflowRequests\CreateWorkflowRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\DTOs\Workflow\WorkflowResponse;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\WorkflowRequests\CreateWorkflowRequest;
 
 class WorkflowResource extends BaseResource
 {

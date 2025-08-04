@@ -1,6 +1,6 @@
 <?php
 
-namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\WorkflowRequests;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\WorkflowRequests;
 
 use Saloon\Enums\Method;
 use Saloon\Http\Request;

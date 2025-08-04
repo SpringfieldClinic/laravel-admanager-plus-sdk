@@ -1,11 +1,11 @@
 <?php
 
-namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\OUManagement;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\OUManagement;
 
 use Saloon\Enums\Method;
 use Saloon\Http\Response;
-use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\OU\CreateOuResponse;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\BaseRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\DTOs\OU\CreateOuResponse;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\BaseRequest;
 
 class CreateOuRequest extends BaseRequest
 {

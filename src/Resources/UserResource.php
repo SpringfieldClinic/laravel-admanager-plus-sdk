@@ -1,21 +1,21 @@
 <?php
 
-namespace SpringfieldClinic\LaravelADManagerPlusSDK\Resources;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\Resources;
 
 use LogicException;
 use Saloon\Exceptions\Request\FatalRequestException;
 use Saloon\Exceptions\Request\RequestException;
 use Saloon\Http\BaseResource;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement\AddUserToGroupRequest;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement\CreateUserRequest;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement\DisableUserRequest;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement\EnableUserRequest;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement\MoveUserRequest;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement\RemoveUserFromGroupRequest;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement\ResetUserPasswordRequest;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement\SearchUserRequest;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement\UnlockUserRequest;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement\UpdateUserRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\UserManagement\AddUserToGroupRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\UserManagement\CreateUserRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\UserManagement\DisableUserRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\UserManagement\EnableUserRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\UserManagement\MoveUserRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\UserManagement\RemoveUserFromGroupRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\UserManagement\ResetUserPasswordRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\UserManagement\SearchUserRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\UserManagement\UnlockUserRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\UserManagement\UpdateUserRequest;
 
 class UserResource extends BaseResource
 {

@@ -11,6 +11,6 @@ class LaravelAdmanagerPlusSdk extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return \SpringfieldClinic\LaravelAdmanagerPlusSdk\LaravelAdmanagerPlusSdk::class;
+        return \SpringfieldClinic\LaravelAdmanagerPlusSdk\Connectors\ADManagerPlusConnector::class;
     }
 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\UserManagement;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\UserManagement;
 
 use Saloon\Enums\Method;
 use Saloon\Http\Response;
-use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\User\MoveUserResponse;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\BaseRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\DTOs\User\MoveUserResponse;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\BaseRequest;
 
 class MoveUserRequest extends BaseRequest
 {

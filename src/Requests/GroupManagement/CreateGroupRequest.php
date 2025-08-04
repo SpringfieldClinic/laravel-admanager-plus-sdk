@@ -1,11 +1,11 @@
 <?php
 
-namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\GroupManagement;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\GroupManagement;
 
 use Saloon\Enums\Method;
 use Saloon\Http\Response;
-use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\Group\CreateGroupResponse;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\BaseRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\DTOs\Group\CreateGroupResponse;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\BaseRequest;
 
 class CreateGroupRequest extends BaseRequest
 {

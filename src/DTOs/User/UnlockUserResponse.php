@@ -1,6 +1,6 @@
 <?php
 
-namespace SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\User;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\DTOs\User;
 
 class UnlockUserResponse
 {

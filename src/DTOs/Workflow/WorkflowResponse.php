@@ -1,6 +1,6 @@
 <?php
 
-namespace SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\Workflow;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\DTOs\Workflow;
 
 class WorkflowResponse
 {

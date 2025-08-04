@@ -1,6 +1,6 @@
 <?php
 
-namespace SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\Group;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\DTOs\Group;
 
 class ListGroupMembersResponse
 {

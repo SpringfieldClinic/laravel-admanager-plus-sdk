@@ -1,6 +1,6 @@
 <?php
 
-namespace SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\OU;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\DTOs\OU;
 
 class OUSearchResponse
 {

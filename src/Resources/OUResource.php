@@ -1,10 +1,10 @@
 <?php
 
-namespace SpringfieldClinic\LaravelADManagerPlusSDK\Resources;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\Resources;
 
 use Saloon\Http\BaseResource;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\OUManagement\CreateOuRequest;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\OUManagement\SearchOURequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\OUManagement\CreateOuRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\OUManagement\SearchOURequest;
 
 class OUResource extends BaseResource
 {

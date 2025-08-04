@@ -1,6 +1,6 @@
 <?php
 
-namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests;
 
 use Saloon\Http\Request;
 

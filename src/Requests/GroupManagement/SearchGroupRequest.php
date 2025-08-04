@@ -1,11 +1,11 @@
 <?php
 
-namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\GroupManagement;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\GroupManagement;
 
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
-use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\Group\GroupSearchResponse;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\DTOs\Group\GroupSearchResponse;
 
 class SearchGroupRequest extends Request
 {

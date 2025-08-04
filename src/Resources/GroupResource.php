@@ -1,12 +1,12 @@
 <?php
 
-namespace SpringfieldClinic\LaravelADManagerPlusSDK\Resources;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\Resources;
 
 use Saloon\Http\BaseResource;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\GroupManagement\CreateGroupRequest;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\GroupManagement\ListGroupMembersRequest;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\GroupManagement\MoveGroupRequest;
-use SpringfieldClinic\LaravelADManagerPlusSDK\Requests\GroupManagement\SearchGroupRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\GroupManagement\CreateGroupRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\GroupManagement\ListGroupMembersRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\GroupManagement\MoveGroupRequest;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\GroupManagement\SearchGroupRequest;
 
 class GroupResource extends BaseResource
 {

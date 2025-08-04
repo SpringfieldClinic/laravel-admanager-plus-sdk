@@ -1,12 +1,12 @@
 <?php
 
-namespace SpringfieldClinic\LaravelADManagerPlusSDK\Requests\OUManagement;
+namespace SpringfieldClinic\LaravelAdmanagerPlusSdk\Requests\OUManagement;
 
 use Saloon\Enums\Method;
 use Saloon\Http\Request;
 use Saloon\Http\Response;
-use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\OU\OUResponse;
-use SpringfieldClinic\LaravelADManagerPlusSDK\DTOs\OU\OUSearchResponse;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\DTOs\OU\OUResponse;
+use SpringfieldClinic\LaravelAdmanagerPlusSdk\DTOs\OU\OUSearchResponse;
 
 class SearchOURequest extends Request
 {
