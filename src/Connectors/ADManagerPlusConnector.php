@@ -15,15 +15,15 @@ class ADManagerPlusConnector extends Connector
 
     public function resolveBaseUrl(): string
     {
-        return config('laravel-admanager-plus-sdk.BASE_API_URL') ?? '';
+        return config('admanager-plus-sdk.BASE_API_URL') ?? '';
     }
 
     protected function defaultQuery(): array
     {
         return array_filter([
-            'AuthToken' => config('laravel-admanager-plus-sdk.AuthToken'),
-            'domainName' => config('laravel-admanager-plus-sdk.domainName'),
-            'PRODUCT_NAME' => config('laravel-admanager-plus-sdk.PRODUCT_NAME'),
+            'AuthToken' => config('admanager-plus-sdk.AuthToken'),
+            'domainName' => config('admanager-plus-sdk.domainName'),
+            'PRODUCT_NAME' => config('admanager-plus-sdk.PRODUCT_NAME'),
         ]);
     }
 
